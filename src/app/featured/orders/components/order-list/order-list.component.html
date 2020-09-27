@@ -1,0 +1,56 @@
+<p class="sortToggle">
+    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style"
+     [value]="sortKey" #group="matButtonToggleGroup">
+        <mat-button-toggle value="all" class="toggle">All</mat-button-toggle>
+        <mat-button-toggle value="Preparing" class="toggle">Preparing</mat-button-toggle>
+        <mat-button-toggle value="Pizza delivered" class="toggle">Completed</mat-button-toggle>
+    </mat-button-toggle-group>
+</p>
+<mat-card class="list header">
+    <div class="item">
+        Order No.
+    </div>
+    <div class="item">
+        Customer Name
+    </div>
+    <div class="item">
+        No. of Items
+    </div>
+    <div class="item">
+        Total Amount
+    </div>
+    <div class="item">
+        Status
+    </div>
+    <div class="item hiddenBtn">
+        <button mat-mini-fab></button>
+    </div>
+</mat-card>
+
+<mat-card class="list orders" *ngFor="let order of orders | orderSort: group.value" (click)="openDialog(order)">
+    <div class="item">
+        <mat-icon *ngIf="order.orderStatus === 'Order received'" class="statusIcon">bookmark_border</mat-icon>
+        <mat-icon *ngIf="order.orderStatus === 'Preparing'" class="statusIcon">cached</mat-icon>
+        <mat-icon *ngIf="order.orderStatus === 'Ready to serve'" class="statusIcon">room_service</mat-icon>
+        <mat-icon *ngIf="order.orderStatus === 'Pizza delivered'" class="statusIcon">done_outline</mat-icon>
+        <span>{{order.orderNumber}}</span>
+    </div>
+    <div class="item">
+        {{order.customerName}}
+    </div>
+    <div class="item">
+        {{order.numberOfItems}}
+    </div>
+    <div class="item">
+        {{order.totalAmount | currency:'INR'}}
+    </div>
+    <div class="item">
+        <button mat-raised-button class="statusBtn"
+            (click)="changeStatus(order.orderNumber, $event)">{{order.orderStatus}}</button>
+    </div>
+    <div class="item">
+        <button mat-mini-fab class="viewBtn">
+            <mat-icon class="viewIcon">open_in_new</mat-icon>
+        </button>
+    </div>
+</mat-card>

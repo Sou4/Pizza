@@ -1,0 +1,15 @@
+.first-spacer {
+  flex: 1 1 auto;
+}
+
+.second-spacer {
+  flex: 0.01 1 auto;
+}
+
+.counter {
+  border: 2px dotted black;
+  padding: 8px;
+  font-size: medium;
+  border-radius: 8%;
+}
+  

@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>Order Summary</h1>
+<div mat-dialog-content>
+    <h3><span class="titles">Order Number:</span> {{data.orderNumber}}</h3>
+    <h3><span class="titles">Customer Name:</span> {{data.customerName}}</h3>
+    <h3><span class="titles">No. of Items:</span> {{data.numberOfItems}}</h3>
+    <div class="addressView">
+        <span class="delivery">
+            <span class="titles">Delivery Address:</span>
+        </span>
+        <span class="delivery">
+            <ul class="addressList">
+                <li>{{data.deliveryAddress.street1}},</li>
+                <li>{{data.deliveryAddress.street2}},</li>
+                <li>{{data.deliveryAddress.city}} - {{data.deliveryAddress.pincode}}</li>
+                <li>Near by. {{data.deliveryAddress.landMark}}</li>
+                <li>Mob No. {{data.deliveryAddress.mobile}}</li>
+            </ul>
+        </span>
+    </div>
+    <div class="items">
+        <table>
+            <thead>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of data.items">
+                    <td>
+                        {{i.name}}
+                    </td>
+                    <td>
+                        {{i.quantity}}
+                    </td>
+                    <td>
+                        {{i.price | currency:'INR'}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <hr>
+    <h3><span class="titles">Total Amount:</span> {{data.totalAmount | currency:'INR'}}</h3>
+    <h3><span class="titles">Order Status:</span> {{data.orderStatus}}</h3>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
